@@ -14,7 +14,7 @@
 #include <cstring>
 
 AppState::AppState()
-    : width(100), height(25), visibleRows(24), scrollOffset(0), buffer1(nullptr), buffer2(nullptr),
+    : width(140), height(35), visibleRows(34), scrollOffset(0), buffer1(nullptr), buffer2(nullptr),
       activeBuffer(nullptr), backBuffer(nullptr), frameBuffer(nullptr), processCount(0),
       cpuCount(0), lastCpuUpdateTime(0), updateCpu(false), sortType(NAME), sortOrder(ASCENDING),
       filter(true), lastKeyTime(0), nowKey(0)
@@ -33,8 +33,8 @@ void getConsoleSize(HANDLE hActive, short *width, short *height)
     }
     else
     {
-        *width = 100;
-        *height = 25;
+        *width = 140;
+        *height = 35;
     }
 }
 
@@ -286,8 +286,9 @@ void renderProcessState(AppState &state)
     paintFrame(state.frameBuffer, state.width, 0, 90, (char *)"Memory");
     paintFrame(state.frameBuffer, state.width, 0, 100, (char *)"CPU");
     paintFrame(state.frameBuffer, state.width, 0, 110, (char *)"Priority");
+    paintFrame(state.frameBuffer, state.width, state.height - 1, 0, (char *)"Controls: P PID | M Memory | C CPU | N Name | A Asc | D Desc | F Filter | Q Quit");
 
-    for (int row = 0; row < state.visibleRows; row++)
+    for (int row = 0; row < state.visibleRows - 1; row++)
     {
         int idx = row + state.scrollOffset;
         if (idx >= static_cast<int>(processList.size()))
