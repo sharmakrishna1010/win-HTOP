@@ -27,6 +27,7 @@ The goal is **learning and correctness**, not replacing existing tools.
 - Flicker-free rendering using double buffering
 - Console resizing handling
 - Interactive sorting
+- Controls shown in the program footer
 
 ---
 
